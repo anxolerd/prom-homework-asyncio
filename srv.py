@@ -5,6 +5,7 @@ from aiohttp import web
 
 @asyncio.coroutine
 def count_endpoint(request, storage=dict()):
+    yield from asyncio.sleep(0.5)
     key = request.match_info['key']
     count = storage[key] = storage.get(key, 0) + 1
     return web.Response(text=str(count))
